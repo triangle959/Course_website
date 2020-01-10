@@ -1,0 +1,55 @@
+{% extends 'exam/master.html' %}
+{% block main %}
+    <div class="box">
+        <div class="header"><a href="{% url 'new_index' %}">信息管理系统分析与设计</a> <span class="chevron">&nbsp;›&nbsp;</span> {{ title }}</div>
+        <div class="inner">
+            <p>您的成绩是{{ score }}分</p>
+            {% for question_now in question_all %}
+                <div id="box1">
+                    {% if question_now.questionType == 'xz' %}
+                        <from id="{{ question_now.id }}">
+                            <p>{{ forloop.counter }}.({{ question_now.score }}分) {{ question_now.content }}</p>
+                            <input type="hidden" value="{{ question_now.id }}">
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="A"/>{{ question_now.choice_a }}
+                            </label><br/>
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="B"/>{{ question_now.choice_b }}
+                            </label><br/>
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="C"/>{{ question_now.choice_c }}
+                            </label><br/>
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="D"/>{{ question_now.choice_d }}
+                            </label><br/>
+                        </from>
+                    {% endif %}
+                    {% if question_now.questionType == 'pd' %}
+                        <from id="{{ question_now.id }}">
+                            <p>{{ forloop.counter }}.({{ question_now.score }}分){{ question_now.content }}</p>
+                            <input type="hidden" value="{{ question_now.id }}">
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="True"/>{{ question_now.boolt }}
+                            </label><br/>
+                            <label><input name="{{ question_now.id }}" type="radio"
+                                          value="False"/>{{ question_now.boolf }}
+                            </label><br/>
+                        </from>
+                    {% endif %}
+                    {% if question_now.questionType == 'wd' %}
+                        <from id="{{ question_now.id }}">
+                            <p>{{ forloop.counter }}.({{ question_now.score }}分){{ question_now.content }}</p>
+                            <textarea name="{{ question_now.id }}" />
+                        </from>
+                    {% endif %}
+                    {% for value in user_ans_dict.values %}
+                        {% if forloop.parentloop.counter == forloop.counter %}<span style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;color: red"><br>您的答案是 {{ value.0 }}，正确的答案为{{ value.1 }}
+                        </span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <hr/>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

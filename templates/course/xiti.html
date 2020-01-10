@@ -1,0 +1,184 @@
+{% extends 'course/master.html' %}
+{% block content %}
+    <div class="box">
+        <div class="inner" style="background-color: #fff; border-top-left-radius: 3px; border-top-right-radius: 3px;" id="Tabs">
+            <div class="cell" style="background-color: #f9f9f9; padding: 10px 10px 10px 20px;">
+                <a href="{% url 'new_index' %}" class="badge badge-dark">课程介绍</a>
+                &nbsp;
+                <a href="shizi" class="badge badge-dark">师资队伍</a>
+                &nbsp;
+                <a href="content" class="badge badge-dark">理论教学大纲</a>
+                &nbsp;
+                <a href="dagang" class="badge badge-dark">实验教学大纲</a>
+                &nbsp;
+                <a href="shiyan" class="badge badge-dark">实验项目</a>
+                &nbsp;
+                <a href="kejian" class="badge badge-dark">课件下载</a>
+                &nbsp;
+                <a href="xiti" class="badge badge-dark">课程习题</a>
+                &nbsp;
+                {% if request.session.user_info %}
+                    {% if request.session.user_info.is_superuser %}
+                        <a href="/admin" class="badge badge-dark">课程实训</a>
+                    {% else %}
+                        <a href="{% url 'xuanti' %}" class="badge badge-dark">课程实训</a>
+                    {% endif %}
+                    &nbsp;
+                    <a href="{% url 'index' %}" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="/examlist" class="badge badge-dark">自我测试</a>
+                {% else %}
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程实训</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">自我测试</a>
+                {% endif %}
+            </div>
+            <div class="cell">
+                <div class="topic_content" >
+                    <h2 align="center">UML练习题及答案</h2>
+                    <h5>一、选择题（共15分，每题1分）</h5>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;"><br>1.UML的全称是	(   B   )
+                        <br>（A）Unify Modeling Language			（B）Unified Modeling Language
+                        <br>（C）Unified Modem Language				（D）Unified Making Language
+                        <br>2.执行者（Actor）与用例之间的关系是（    C    ）
+                        <br>（A）包含关系		（B）泛化关系	（C）关联关系	（D）扩展关系
+                        <br>3.在类图中，下面哪个符号表示继承关系（    C   ）</span>
+                    <img src="/static/img/图片1.png"/>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        <br>4.下面哪个视图属于UML语言的交互图（     D    ）
+                        <br>（A）行为图			（B）状态图		（C）实现图			（D）顺序图
+                        <br>5.UML语言包含几大类图形（    B   ）
+                        <br>（A）3				（B）5				（C）7			（D）9
+                        <br>6.在类图中，下面哪个符号表示接口（    C   ）</span>
+                    <img src="/static/img/图片2.png" />
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        <br>7.下面哪个图形代表活动（    D   ）</span>
+                    <img src="/static/img/图片3.png" />
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        <br> &emsp;&emsp;(用例）&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(状态）&emsp;&emsp;&emsp;（活动）
+                        <br>8.UML中关联的多重度是指(		b)
+                        <br>（A）一个类有多个方法被另一个类调用
+                        <br>（B）一个类的实类能够与另一个类的多个实类相关联
+                        <br>（C）一个类的某个方法被另一个类调用的次数
+                        <br>（D）两个类所具有的相同的方法和属性
+                        <br>
+                        <br>9.下面哪个不是UML中的静态视图（A）
+                        <br>(A)状态图  (B)用例图     (C)对象图  (D)类图
+                        <br>
+                        <br>10.（A）技术是将一个活动图中的活动状态进行分组，每一组表示一个特定的类、人或部门，他们负责完成组内的活动。
+                        <br>  (A)泳道     (B)分叉汇合       (C)分支     (D)转移
+                        <br>
+                        <br>11.下列关于状态图的说法中，正确的是（　C  ）
+                        <br>(A) 状态图是UML中对系统的静态方面进行建模的五种图之一。
+                        <br>(B) 状态图是活动图的一个特例，状态图中的多数状态是活动状态
+                        <br>(C) 活动图和状态图是对一个对象的生命周期进行建模，描述对象随时间变化的行为。
+                        <br>(D) 状态图强调对有几个对象参与的活动过程建模，而活动图更强调对单个反应型对象建模
+                        <br>
+                        <br>12.类图应该画在Rose的哪种（B）视图中。
+                        <br>  (A)Use Case View     (B)Logic View   (C)Component View   (D)Deployment View
+                        <br>
+                        <br>13.顺序图由类角色，生命线，激活期和（B）组成
+                        <br>  (A)关系   (B)消息       (C)用例    (D)实体
+                        <br>
+                        <br>14.关于协作图的描述，下列哪个不正确（　B　）
+                        <br>(A)协作图作为一种交互图，强调的是参加交互的对象的组织；
+                        <br>(B)协作图是顺序图的一种特例
+                        <br>(C)协作图中有消息流的顺序号；
+                        <br>(D)在ROSE工具中，协作图可在顺序图的基础上按“F5”键自动生成；
+                        <br>
+                        <br>15.组件图用于对系统的静态实现视图建模，这种视图主要支持系统部件的配置管理，通常可以分为四种方式来完成，下面哪种不是其中之一（　B　）
+                        <br>(A)对源代码建模                          (B)对事物建模
+                        <br>(C)对物理数据库建模                      (D)对可适应的系统建模</span>
+                    <br><h5>二、填空题（共15分，每空1分）</h5>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        1．软件体系结构是指一个系统的有目的的设计和规划，这个设计规划既不描述<span style="color: red; text-decoration:underline;">  活动  </span>，也不描述<span style="color: red; text-decoration:underline;"> 系统怎样开发</span>，它只描述系统的<span style="color: red; text-decoration:underline;">       组成元素    </span>及其相互的<span style="color: red; text-decoration:underline;">      交互协作        </span>。
+                        <br>2．一个UML模型只描述了一个系统<span style="color: red; text-decoration:underline;">      要做什么       </span>，它并没告诉我们系统是<span style="color: red; text-decoration:underline;">              怎么做         </span>。
+                        <br>3．接口是可以在整个模型中反复使用的一组行为，是一个没有<span style="color: red; text-decoration:underline;">    属性     </span>而只有<span style="color: red; text-decoration:underline;">   方法      </span>的类。
+                        <br>4．多重性指的是，某个类有<span style="color: red; text-decoration:underline;">        多个   </span>个对象可以和另一个类的<span style="color: red; text-decoration:underline;">        1个    </span>对象关联。
+                        <br>5．当一个类的对象可以充当多种角色时，<span style="color: red; text-decoration:underline;">       自身    </span>关联就可能发生。
+                        <br>6．在泛化关系中，<span style="color: red; text-decoration:underline;">     子类    </span>可以替代<span style="color: red; text-decoration:underline;">   父类      </span>。也就是说，后者出现的地方，前者都可以出现。但是反过来却不成立。
+                        <br>7．最通常的依赖关系是一个类操作的<span style="color: red; text-decoration:underline;">     形构      </span>中用到了<span style="color: red; text-decoration:underline;">      另一个类         </span>的定义。
+                    </span>
+                    <h5>三、简答题（共20分，每题4分）</h5>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        1．  类图在UML中有何重要作用？
+                        <br><span style="color: red">答:1.为开发人员提供这种模仿现实世界的表达方式。
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;2.让分析员使用客户所采用的术语和客户交流，促使客户说出所要解决的问题的重要细节。</span>
+                        <br>2．阐述用例对于系统开发人员来说的价值。
+                        <br><span style="color: red">答:是用来从用户的观察角度收集系统需求的一项技术，便于分析员与客户和用户交流，使系统更符合用户的需求</span>
+                        <br>3.简述如何在实际工作中发现类。
+                        <br><span style="color: red">答:在与客户的交谈中，要注意客户用来描述业务实体的名词术语。这些名词可作为领域模型中的类。
+                        <br>还要注意你听到的动词，因为这些动词可能会构成这些类中的操作。
+                        <br>当得到一组类的核心列表后，应当向客户询问在业务过程中每个类的作用。他们的回答将告诉你这些类的职责。</span>
+                        <br>4．简述怎样发现类之间的继承关系。
+                        <br><span style="color: red">答:作为候选的类有可能和它的父类、子类在谈话中同时被发现。系统分析员意识到某个类的属性和操作也许能被运用到其他多个类当中去。
+                        <br>另一种可能的情况是系统分析员注意到两个或者多个类可能具有相同的属性和操作数</span>
+                        <br>5．顺序图和协作图中，消息有哪三种？各自的意义和表示什么？
+                        <br><span style="color: red">答:消息可以是简单的(simple)、同步的(synchronous)或异步的(asynchronous)。简单消息是从—个对象到另一个对象的控制流的转移。如果一个对象发送了—个同步消息，那么它要等待对方对消息的应答，收到应答后才能继续自己的操作。而发送异步消息的对象不需要等待对方的应答便可以继续自己的操作。在顺序图中，简单消息是—个简单箭头，同步消息是实心箭头。异步消息是—个半边箭头。</span>
+                    </span>
+                    <h5>四、分析设计（共45分）</h5><span span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                            1.根据下面的叙述，绘制一幅关于顾客从自动售货机中购买物品的顺序图。(7)
+                            <br>(1)顾客（User）先向自动售货机的前端（Front）投币；
+                            <br>(2)售货机的识别器（Register）识别钱币；
+                            <br>(3)售货机前端（Front）根据Register的识别结果产生商品列表；
+                            <br>(4)顾客选择商品；
+                            <br>(5)识别器控制的出货器（Dispenser）将所选商品送至前端（Front）
+                </span>
+                    <div class="sep20"></div>
+                    <img src="/static/img/图片4.png"/>
+                    <div class="sep20"></div>
+                    <span span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        <br>2. 根据下面的描述，绘制一幅状态图。
+                        <br>电话初始时处于“空闲”状态，当听筒被拿起后处于“激活”状态。听筒被拿起后，电话等待拨号，若在30秒之内拨号电话将进入“拨号”状态，如果拨号正确的则电话进入“正在接通中”状态，如过拨号不正确则会一直听到提示拨号错误。若拿起听筒30秒之内不拨号，则电话处于“超时”状态。在“正在接通中”状态下，若对方占线则电话进入“忙”状态，若对方不占线则进入“接通”状态，对方拿起听筒后，电话处于“通话”状态，若在通话中对方挂断则进入“挂起”状态。
+                    </span>
+                    <div class="sep20"></div>
+                    <img src="/static/img/图片5.png"/>
+                    <div class="sep20"></div>
+                    <span span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        3.网络的普及带给了人们更多的学习途径，随之而来的管理远程网络教学的“远程网络教学系统”诞生了。（16）
+                        <br>&emsp;&emsp;“远程网络教学系统”的功能需求如下：
+                        <br>-学生登录网站后，可以浏览课件、查找课件、下载课件、观看教学视频。
+                        <br>-教师登录网站后，可以上传课件、上传教学视频、发布教学心得、查看教学心得、修改教学心得。
+                        <br>-系统管理员负责对网站页面的维护、审核不合法课件和不合法教学信息、批准用户注册。
+                        <br>1）学生需要登录“远程网络教学系统”后才能正常使用该系统的所有功能。如果忘记密码，可与通过“找回密码”功能恢复密码。请画出学生参与者的用例图。
+                    </span>
+                    <div class="sep20"></div>
+                    <img src="/static/img/图片6.png"/>
+                    <div class="sep20"></div>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        6个用例每2个1分（3分），5关系每个1分（5分）
+                        <br>2）教师如果忘记密码，可以通过“找回密码”功能找回密码。请画出教师参与者的用例图。
+                    </span>
+                    <div class="sep20"></div>
+                    <img src="/static/img/图片7.png"/>
+                    <div class="sep20"></div>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        6个用例每2个1分（3分），5关系每个1分（5分）
+                        <br><br>4.  图书管理系统功能性需求说明如下:（25分--
+                        <br>--图书管理系统能够为一定数量的借阅者提供服务。每个借阅者能够拥有唯一标识其存在的编号。图书馆向每一个借阅者发放图书证，其中包含每一个借阅者的编号和个人信息。提供的服务包括：提供查询图书信息、查询个人信息服务和预定图书服务等。
+                        <br>--当借阅者需要借阅图书、归还书籍时需要通过图书管理员进行，即借阅者不直接与系统交互，而是通过图书管理员充当借阅者的代理和系统交互。
+                        <br>--系统管理员主要负责系统的管理维护工作，包括对图书、数目、借阅者的添加、删除和修改。并且能够查询借阅者、图书和图书管理员的信息。
+                        <br>--可以通过图书的名称或图书的ISBN/ISSN号对图书进行查找。
+                        <br>回答下面问题：
+                        <br>1)该系统中有哪些参与者?（3分）
+                        <br><span style="color: red; text-decoration:underline;">借阅者  图书管理员   系统管理员</span>
+                        <br>2)确定该系统中的类，找出类之间的关系并画出类图
+                        <br><span style="color: red; text-decoration:underline;">用户类、用户角色类、图书类、预定类、借阅类、书目类（6分）</span>
+                        <br>类图（6分）6个类每2个1分，6个关系 每2个1分
+                    </span>
+                    <div class="sep20"></div>
+                    <img src="/static/img/图片8.png"/>
+                    <div class="sep20"></div>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        3)画出语境“借阅者预定图书”的时序图（10分）
+                    </span>
+                    <div class="sep20"></div>
+                    <img src="/static/img/图片9.png"/>
+                    <div class="sep20"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

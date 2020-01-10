@@ -1,0 +1,170 @@
+{% extends 'topic/master.html' %}
+{% block CSS %}
+<style>
+    .f12 {
+        font-size: 12px;
+    }
+    .fr {
+        float: right;
+        text-align: right;
+    }
+</style>
+{% endblock %}
+{% block main %}
+    <div class="box">
+        <div class="header"><a href="{% url 'index' %}">论坛首页</a> <span class="chevron">&nbsp;›&nbsp;</span> 我关注的人的最新主题
+            <div class="fr f12"><span class="snow">主题总数&nbsp;</span> <strong class="gray">{{ following_topic_obj.count }}</strong></div>
+        </div>
+        {% for obj in following_topic_obj %}
+            <div class="cell item">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tbody>
+                    <tr>
+                        <td width="48" valign="top" align="center">
+                            <a href="{% url 'member' obj.author.username %}">
+                                <img src="{{ obj.author.avatar }}" class="rounded" alt="{{ obj.author.username }}"
+                                     width="48px" height="48px" border="0" align="default">
+                            </a>
+                        </td>
+                        <td width="10"></td>
+                        <td width="auto" valign="middle">
+                            <span class="item_title"><a href="{% url 'topic' obj.topic_sn %}">{{ obj.title|safe }}</a></span>
+                            <div class="sep5"></div>
+                            <span class="small">
+                            <div class="votes"></div>
+                            <a class="node" href="{% url 'node' obj.category.code %}">{{ obj.category.name }}</a> &nbsp;•&nbsp;
+                            <strong>
+                                <a href="{% url 'member' obj.author.username %}">{{ obj.author.username }}</a>
+                            </strong>
+                            {% if obj.last_comment %}
+                                &nbsp;•&nbsp; {{ obj.last_comment.add_time }} &nbsp;•&nbsp; 最后回复来自
+                                <strong>
+                                    <a href="{% url 'member' obj.last_comment.author.username %}">{{ obj.last_comment.author.username }}</a>
+                                </strong>
+                            {% endif %}
+                        </span>
+                        </td>
+                        <td width="70" align="right" valign="middle">
+                            <a href="{% url 'topic' obj.topic_sn %}"
+                               class="badge badge-pill badge-secondary">&nbsp;{{ obj.comment_num }}&nbsp;</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+    {% endfor %}
+    </div>
+{% endblock %}
+
+{% block rightbar %}
+    {% if request.session.user_info %}
+        <div class="box">
+            <div class="cell">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tbody>
+                    <tr>
+                        <td width="48" valign="top"><a href="{% url 'member' request.session.user_info.username %}"><img
+                                src="{{ request.session.user_info.avatar }}"
+                                class="rounded" border="0" align="default"
+                                style="max-width: 48px; max-height: 48px;"></a></td>
+                        <td width="10" valign="top"></td>
+                        <td width="auto" align="left"><span class="bigger"><a
+                                href="{% url 'member' request.session.user_info.username %}">{{ request.session.user_info.username }}</a></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="sep10"></div>
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tbody>
+                    <tr class="no_hove_line">
+                        <td width="33%" align="center"><a href="{% url 'my_nodes' %}" class="dark" style="display: block;"><span
+                                class="bigger">{{ request.session.user_info.favorite_node_num }}</span>
+                            <div class="sep3"></div>
+                            <span>节点收藏</span></a></td>
+                        <td width="34%"
+                            style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);"
+                            align="center"><a href="{% url 'my_topics' %}" class="dark" style="display: block;"><span
+                                class="bigger">{{ request.session.user_info.favorite_topic_num }}</span>
+                            <div class="sep3"></div>
+                            <span>主题收藏</span></a></td>
+                        <td width="33%" align="center"><a href="{% url 'my_following' %}" class="dark"
+                                                          style="display: block;"><span class="bigger">{{ request.session.user_info.following_user_num }}</span>
+                            <div class="sep3"></div>
+                            <span>特别关注</span></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cell">
+                <div style="width: 250px; background-color: #f0f0f0; height: 3px; display: inline-block; vertical-align: middle;">
+                    <div style="width: 40px; background-color: #ccc; height: 3px; display: inline-block;"></div>
+                </div>
+            </div>
+            <div class="cell" style="padding: 5px;">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tbody>
+                    <tr>
+                        <td width="32"><a href="{% url 'new' %}"><img
+                                src="/static/img/flat_compose.png" width="32"
+                                border="0"></a></td>
+                        <td width="10"></td>
+                        <td width="auto" valign="middle" align="left"><a href="{% url 'new' %}">创作新主题</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="inner">
+                {% if request.session.user_info.show_balance == 1 %}
+                    <div class="fr" id="money">
+                        <a href="{% url 'balance' %}" class="badge badge-pill badge-light">
+                            {{ request.session.user_info.balance }}
+                            <img src="/static/img/bronze.png" border="0">
+                        </a>
+                    </div>
+                {% endif %}
+                <a href="/notifications">0 条未读提醒</a></div>
+        </div>
+        <div class="sep20"></div>
+        <div class="box">
+            <div class="inner">
+                {% if not request.session.user_info.daily_mission %}
+                    <li class="fa fa-gift" style="color: #f90;"></li> &nbsp;
+                    <a href="{% url 'daily_mission' %}">领取今日的登录奖励</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="sep20"></div>
+        <div class="box">
+            <div class="cell"><span>我关注的人</span></div>
+            {% for obj in my_following_obj %}
+                <div class="cell">
+                    <a href="{% url 'member' obj.following.username %}">
+                        <img src="{{ obj.following.avatar }}" class="rounded" border="0" width="24" height="24" align="absmiddle">
+                    </a>&nbsp; <a href="{% url 'member' obj.following.username %}">{{ obj.following.username }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="box">
+            <div class="cell">
+                <strong>信息管理系统分析与设计</strong>
+                <div class="sep5"></div>
+                <span>一个学习与探索的地方</span>
+            </div>
+            <div class="inner">
+                <div class="sep5"></div>
+                <div align="center"><a href="{% url 'signup' %}" class="btn btn-sm btn-secondary">现在注册</a>
+                    <div class="sep5"></div>
+                    <div class="sep10"></div>
+                    已注册用户请 &nbsp;<a href="{% url 'signin' %}">登录</a></div>
+            </div>
+        </div>
+        <div class="sep20"></div>
+        <div class="box">
+            <div class="inner">
+            </div>
+        </div>
+        <div class="sep20"></div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'layout.html' %}
+{% block rightbar %}
+    {% if request.session.user_info %}
+        <div class="box">
+            <div class="cell">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tbody>
+                    <tr>
+                        <td width="48" valign="top"><a href="{% url 'member' request.session.user_info.username %}"><img
+                                src="{{ request.session.user_info.avatar }}"
+                                class="rounded" border="0" align="default"
+                                style="max-width: 48px; max-height: 48px;"></a></td>
+                        <td width="10" valign="top"></td>
+                        <td width="auto" align="left"><span class="bigger"><a
+                                href="{% url 'member' request.session.user_info.username %}">{{ request.session.user_info.nick_name }}</a></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="sep10"></div>
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tbody>
+                    <tr class="no_hove_line">
+                        <td width="33%" align="center"><a href="{% url 'my_nodes' %}" class="dark" style="display: block;"><span
+                                class="bigger">{{ request.session.user_info.favorite_node_num }}</span>
+                            <div class="sep3"></div>
+                            <span>节点收藏</span></a></td>
+                        <td width="34%"
+                            style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);"
+                            align="center"><a href="{% url 'my_topics' %}" class="dark" style="display: block;"><span
+                                class="bigger">{{ request.session.user_info.favorite_topic_num }}</span>
+                            <div class="sep3"></div>
+                            <span>主题收藏</span></a></td>
+                        <td width="33%" align="center"><a href="{% url 'my_following' %}" class="dark"
+                                                          style="display: block;"><span class="bigger">{{ request.session.user_info.following_user_num }}</span>
+                            <div class="sep3"></div>
+                            <span>特别关注</span></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cell" style="padding: 5px;">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tbody>
+                    <tr>
+                        <td width="32"><a href="{% url 'new' %}"><img
+                                src="/static/img/flat_compose.png" width="32"
+                                border="0"></a></td>
+                        <td width="10"></td>
+                        <td width="auto" valign="middle" align="left"><a href="{% url 'new' %}">创作新主题</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cell">
+                {% if request.session.user_info.xuanti_start == 1 %}
+                    <a href="{% url 'xuanti' %}"  style="display: block; text-align: center;">进入实训选题</a>
+                {% endif %}
+            </div>
+            <div class="inner">
+                {% if request.session.user_info.show_balance == 1 %}
+                    <div class="fr" id="money">
+                        <a href="{% url 'balance' %}" class="badge badge-pill badge-light">
+                            {{ request.session.user_info.balance }}
+                            <img src="/static/img/bronze.png" border="0">
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="sep20"></div></div>
+        </div>
+        <div class="sep20"></div>
+        <div class="box">
+            <div class="inner">
+                {% if not request.session.user_info.daily_mission %}
+                    <li class="fa fa-gift" style="color: #f90;"></li> &nbsp;
+                    <a href="{% url 'daily_mission' %}">领取今日的登录奖励</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="sep20"></div>
+    {% else %}
+        <div class="box">
+            <div class="cell">
+                <strong>信息管理系统分析与设计</strong>
+                <div class="sep5"></div>
+                <span>一个学习与探索的地方</span>
+            </div>
+            <div class="inner">
+                <div class="sep5"></div>
+                <div align="center"><a href="{% url 'signup' %}" class="btn btn-sm btn-secondary">现在注册</a>
+                    <div class="sep5"></div>
+                    <div class="sep10"></div>
+                    已注册用户请 &nbsp;<a href="{% url 'signin' %}">登录</a></div>
+            </div>
+
+        </div>
+        <div class="sep20"></div>
+        <div class="box">
+            <div class="inner">
+                <div class="cell" >
+                    <span style="font-family: Arial; font-size: 8px">&nbsp;&nbsp;&nbsp;&nbsp;《信息管理系统分析与设计》主要学习信息资源管理、管理、数量分析方法、经
+                            济、计算机及信息系统方面的基本理论
+                            和基本知识，受到系统和设计方法以及
+                            信息管理方法的基本训练，具备综合运
+                            用所学知识分析和解决问题的基本能力。
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="sep20"></div>
+    {% endif %}
+{% endblock %}

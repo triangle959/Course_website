@@ -1,0 +1,149 @@
+{% extends 'course/master.html' %}
+{% block content %}
+    <div class="box">
+        <div class="inner" style="background-color: #fff; border-top-left-radius: 3px; border-top-right-radius: 3px;" id="Tabs">
+            <div class="cell" style="background-color: #f9f9f9; padding: 10px 10px 10px 20px;">
+                <a href="{% url 'new_index' %}" class="badge badge-dark">课程介绍</a>
+                &nbsp;
+                <a href="shizi" class="badge badge-dark">师资队伍</a>
+                &nbsp;
+                <a href="content" class="badge badge-dark">理论教学大纲</a>
+                &nbsp;
+                <a href="dagang" class="badge badge-dark">实验教学大纲</a>
+                &nbsp;
+                <a href="shiyan" class="badge badge-dark">实验项目</a>
+                &nbsp;
+                <a href="kejian" class="badge badge-dark">课件下载</a>
+                &nbsp;
+                <a href="xiti" class="badge badge-dark">课程习题</a>
+                &nbsp;
+                {% if request.session.user_info %}
+                    {% if request.session.user_info.is_superuser %}
+                        <a href="/admin" class="badge badge-dark">课程实训</a>
+                    {% else %}
+                        <a href="{% url 'xuanti' %}" class="badge badge-dark">课程实训</a>
+                    {% endif %}
+                    &nbsp;
+                    <a href="{% url 'index' %}" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="/examlist" class="badge badge-dark">自我测试</a>
+                {% else %}
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程实训</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">自我测试</a>
+                {% endif %}
+            </div>
+            <div class="cell">
+                <div class="topic_content" >
+                    <h2 align="center">课程基本内容</h2>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;课程学时共54学时，其中，理论36学时，实验18学时。内容为：
+                    </span>
+                    <h5 align="center"> <br>第一章   面向对象软件开发方法（2学时）</h5>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        <br>【掌握】
+                        <br>1.面向对象开发技术的基本概念
+                        <br>2.几种典型的面向对象开发方法
+                        <br>【熟悉】
+                        <br>1.软件过程和开发方法
+                        <br>2.面向对象开发方法的特点
+                        <br>【了解】
+                        <br>1.软件的发展和软件工程的概念
+                        <br>2.软件开发的常用方法
+                        <br>3.可行性研究方法
+                    </span>
+                    <h5 align="center"> <br>第2章    UML建模语言（4学时）</h5>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        【掌握】
+                        <br>1.UML的视图、图及图和视图的关系
+                        <br>2.UML模型元素及符号的使用
+                        <br>3.UML的系统模型图
+                        <br>【熟悉】
+                        <br>1. UML的特点
+                        <br>【了解】
+                        <br>1.UML的发展历史及应用
+                        <br>2.UML模型体系结构
+                    </span>
+                    <h5 align="center"> <br>第3章 需求分析与用例建模（6学时）</h5>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                       【掌握】
+                        <br>1.用例图建模方法和步骤
+                        <br>2.活动图建模方法和步骤
+                        <br>【熟悉】
+                        <br>1.用例规格说明
+                        <br>2.需求分析用例建模案例
+                        <br>【了解】
+                        <br>1.需求分析规格说明
+                        <br>2.客户需求分析
+                    </span>
+                    <h5 align="center"> <br>第4章 面向对象系统分析与对象类建模（6学时）</h5>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        【掌握】
+                        <br>1.面向对象系统分析的过程
+                        <br>2.系统用例建模方法和步骤
+                        <br>3.类图和对象图建模方法和步骤
+                        <br>【熟悉】
+                        <br>1.系统用例与类建模案例
+                        <br>2.通过案例进行学习面向对象系统分析应用
+                        <br>【了解】
+                        <br>1.类和对象概念
+                        <br>2.类与对象的关系
+                    </span>
+                    <h5 align="center"> <br>第5章 面向对象系统设计与行为建模（6学时）</h5>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        【掌握】
+                        <br>1.交互图和状态机图的表示方法
+                        <br>2.顺序图和通信图进行系统设计
+                        <br>3.顺序图和通信图的区别
+                        <br>4.状态机图建模
+                        <br>【熟悉】
+                        <br>1.面向对象系统体系结构设计
+                        <br>2.在实际应用中什么时候用顺序图、通信图和状态机图
+                        <br>【了解】
+                        <br>1.面向对象设计的准则、启发规则
+                        <br>2.面向对象系统设计优化
+                    </span>
+                    <h5 align="center"> <br>第6章 系统体系结构建模（6学时）</h5>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        【掌握】
+                        <br>1.UML中的构件、构件接口和构件模型图的描述方法
+                        <br>2.UML中部署图的描述方法
+                        <br>3.部署图中结点、构件和对象之间的关系
+                        <br>【熟悉】
+                        <br>1.部署图绘制
+                        <br>2.通过实例巩固系统体系结构建模工具
+                        <br>【了解】
+                        <br>1.软件系统体系结构模型的建模方法与步骤
+                        <br>2.硬件系统体系结构模型的建模方法和步骤
+                    </span>
+                    <h5 align="center"><br><br> 第7章 软件复用与软件构件技术（3学时）</h5>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        【掌握】
+                        <br>1.面向对象技术与软件复用的关系
+                        <br>2.软件复用技术的应用
+                        <br>【熟悉】
+                        <br>1.软件构件技术的基本概念
+                        <br>2.软件复用技术的基本概念
+                        <br>【了解】
+                        <br>1.软件架构的基本概念、要素、目标和种类
+                        <br>2.软件在工程的基本概念、模型，以及在工程活动的类型级别和步骤
+                    </span>
+                    <h3 align="center"> <br>第8章信息系统开发实例（3学时）</h3>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        【掌握】
+                        <br>1.通过案例学习，能运用UML进行面向对象分析与设计的全过程，包括需求分析建模、系统分析建模、系统设计建模步骤。
+                        <br>2.掌握在系统分析与设计的什么阶段使用用例图、活动图、类图、顺序图、通信图、状态机图、构件图、部署图等。
+                        <br>【熟悉】
+                        <br>1.每个案例的系统分析与设计建模的各步骤
+                        <br>2.UML建模语言的应用
+                        <br>【了解】
+                        <br>1.系统需求说明
+                        <br>2.系统可行性分析
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

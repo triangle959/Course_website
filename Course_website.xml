@@ -1,0 +1,7 @@
+<uwsgi>
+		<socket>127.0.0.1:8002</socket>
+		<chdir>/root/Course_website/</chdir>
+		<module>Course_website.wsgi</module>
+		<processes>4</processes>
+		<daemonize>uwsgi.log</daemonize>
+</uwsgi>

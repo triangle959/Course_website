@@ -1,0 +1,101 @@
+{% extends 'course/master.html' %}
+{% block content %}
+    <div class="box">
+        <div class="inner" style="background-color: #fff; border-top-left-radius: 3px; border-top-right-radius: 3px;" id="Tabs">
+            <div class="cell" style="background-color: #f9f9f9; padding: 10px 10px 10px 20px;">
+                <a href="{% url 'new_index' %}" class="badge badge-dark">课程介绍</a>
+                &nbsp;
+                <a href="shizi" class="badge badge-dark">师资队伍</a>
+                &nbsp;
+                <a href="content" class="badge badge-dark">理论教学大纲</a>
+                &nbsp;
+                <a href="dagang" class="badge badge-dark">实验教学大纲</a>
+                &nbsp;
+                <a href="shiyan" class="badge badge-dark">实验项目</a>
+                &nbsp;
+                <a href="kejian" class="badge badge-dark">课件下载</a>
+                &nbsp;
+                <a href="xiti" class="badge badge-dark">课程习题</a>
+                &nbsp;
+                {% if request.session.user_info %}
+                    {% if request.session.user_info.is_superuser %}
+                        <a href="/admin" class="badge badge-dark">课程实训</a>
+                    {% else %}
+                        <a href="{% url 'xuanti' %}" class="badge badge-dark">课程实训</a>
+                    {% endif %}
+                    &nbsp;
+                    <a href="{% url 'index' %}" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="/examlist" class="badge badge-dark">自我测试</a>
+                {% else %}
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程实训</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">自我测试</a>
+                {% endif %}
+            </div>
+            <div class="cell">
+                <div class="topic_content" >
+                    <h2 align="center">实验项目表</h2>
+                    <br>
+                    <table class="table table-bordered">
+                        <tr class="row mx-0">
+                            <th class="col-1">序号</th>
+                            <td class="col-2" align="center">内容</td>
+                            <td class="col-1">学时</td>
+                            <td class="col-5" align="center">实践（实验）要求</td>
+                            <td class="col-3">实践（实验）类型</td>
+                        </tr>
+                        <tr class="row mx-0">
+                            <th class="col-1">1</th>
+                            <td class="col-2">UML建模工具的使用</td>
+                            <td class="col-1">3</td>
+                            <td class="col-5">熟悉UML建模工具软件的功能特色、安装、通过环境和基本操作等；掌握UML建模工具的基本功能和基本使用 </td>
+                            <td class="col-3">验证性实验</td>
+                        </tr>
+                        <tr class="row mx-0">
+                            <th class="col-1">2</th>
+                            <td class="col-2">用例图建模</td>
+                            <td class="col-1">3</td>
+                            <td class="col-5">学会分析系统的参与者和用例，参与者与用例之间的关系、用例与用例之间的关系；掌握用例图建模方法和步骤 </td>
+                            <td class="col-3">验证性实验</td>
+                        </tr>
+                        <tr class="row mx-0">
+                            <th class="col-1">3</th>
+                            <td class="col-2">活动图建模</td>
+                            <td class="col-1">3</td>
+                            <td class="col-5">熟悉活动图的基本功能和使用方法；掌握如何使用建模工具绘制活动图的方法 </td>
+                            <td class="col-3">验证性实验</td>
+                        </tr>
+                        <tr class="row mx-0">
+                            <th class="col-1">4</th>
+                            <td class="col-2">类图建模</td>
+                            <td class="col-1">3</td>
+                            <td class="col-5">掌握从用例需求分析出类以及类间的关系；掌握类图的绘制方法 </td>
+                            <td class="col-3">验证性实验</td>
+                        </tr>
+                        <tr class="row mx-0">
+                            <th class="col-1">5</th>
+                            <td class="col-2">交互图建模</td>
+                            <td class="col-1">3</td>
+                            <td class="col-5">学会用顺序图和通信图实现用例；掌握顺序和通信图的绘制方法，以及顺序图与通信图的相互转换 </td>
+                            <td class="col-3">验证性实验</td>
+                        </tr>
+                        <tr class="row mx-0">
+                            <th class="col-1">6</th>
+                            <td class="col-2">构件图与部署图建模</td>
+                            <td class="col-1">3</td>
+                            <td class="col-5">理解构件图和部署图的基本概念、构件图和部署图的应用；掌握构件图和部署图的绘制方法  </td>
+                            <td class="col-3">验证性实验</td>
+                        </tr>
+
+                    </table>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        实验指导：<a href="/static/file/信息系统分析与设计实验指导手册.docx">信息系统分析与设计实验指导手册.docx</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

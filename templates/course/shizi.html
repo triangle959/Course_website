@@ -1,0 +1,49 @@
+{% extends 'course/master.html' %}
+{% block content %}
+    <div class="box">
+        <div class="inner" style="background-color: #fff; border-top-left-radius: 3px; border-top-right-radius: 3px;" id="Tabs">
+            <div class="cell" style="background-color: #f9f9f9; padding: 10px 10px 10px 20px;">
+                <a href="{% url 'new_index' %}" class="badge badge-dark">课程介绍</a>
+                &nbsp;
+                <a href="shizi" class="badge badge-dark">师资队伍</a>
+                &nbsp;
+                <a href="content" class="badge badge-dark">理论教学大纲</a>
+                &nbsp;
+                <a href="dagang" class="badge badge-dark">实验教学大纲</a>
+                &nbsp;
+                <a href="shiyan" class="badge badge-dark">实验项目</a>
+                &nbsp;
+                <a href="kejian" class="badge badge-dark">课件下载</a>
+                &nbsp;
+                <a href="xiti" class="badge badge-dark">课程习题</a>
+                &nbsp;
+                {% if request.session.user_info %}
+                    {% if request.session.user_info.is_superuser %}
+                        <a href="/admin" class="badge badge-dark">课程实训</a>
+                    {% else %}
+                        <a href="{% url 'xuanti' %}" class="badge badge-dark">课程实训</a>
+                    {% endif %}
+                    &nbsp;
+                    <a href="{% url 'index' %}" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="/examlist" class="badge badge-dark">自我测试</a>
+                {% else %}
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程实训</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">自我测试</a>
+                {% endif %}
+            </div>
+            <div class="cell">
+                <div class="topic_content" >
+                    <h2 align="center">师资队伍</h2>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        <br>&emsp;&emsp;&emsp;谢晓玲，计算机应用技术博士，讲师。
+                        <br>&emsp;&emsp;&emsp;刘珍，计算机应用技术博士，讲师。
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

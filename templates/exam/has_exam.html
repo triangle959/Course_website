@@ -1,0 +1,10 @@
+{% extends 'exam/master.html' %}
+{% block main %}
+    <div class="box">
+        <div class="header"><a href="{% url 'new_index' %}">信息管理系统分析与设计</a> <span class="chevron">&nbsp;›&nbsp;</span> {{ title }}</div>
+        <div class="inner">
+            <p>您已经做过{{ title }}这套卷子啦</p>
+            <p>上次您的成绩是{{ score }}分</p>
+        </div>
+    </div>
+{% endblock %}

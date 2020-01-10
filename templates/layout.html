@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>信息系统分析与设计</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/plugin/highlight/tomorrow.css">
+    <style>
+        #Top {
+            text-align: center;
+            background-color: #fff;
+            height: 44px;
+            font-size: 15px;
+            font-weight: 500;
+            background-size: 44px 44px;;
+            border-bottom: 1px solid #e2e2e2;
+        }
+
+        #Wrapper {
+            text-align: center;
+            background-color: #e2e2e2;
+            background-image: url(/static/img/shadow_light.png);
+            background-repeat: repeat-x;
+        }
+
+        #Leftbar {
+            width: 0;
+            float: left;
+        }
+
+        #Rightbar {
+            width: 270px;
+            float: right;
+            margin-right: 20px;
+        }
+        .content {
+            min-width: 800px;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+        #Main {
+            width: auto;
+            margin: 0 310px 0 20px;
+        }
+
+        .box {
+            background-color: #fff;
+            border-radius: 3px;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #e2e2e2;
+        }
+
+        .inner {
+            padding: 10px;
+            font-size: 14px;
+            line-height: 150%;
+            text-align: left;
+        }
+
+        .cell {
+            padding: 10px;
+            font-size: 14px;
+            line-height: 120%;
+            text-align: left;
+            border-bottom: 1px solid #e2e2e2;
+            background-color: white;
+        }
+
+        .item {
+            background-position: 0 bottom;
+            color: #778087;
+        }
+
+        .c {
+            clear: both;
+        }
+        .sep20 {
+            height: 20px;
+        }
+
+        .sep5 {
+            height: 5px;
+        }
+
+        .sep10 {
+            height: 10px;
+        }
+        a {
+            color: #778087;
+        }
+        a.top:hover {
+            color: #99a;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #778399;
+        }
+        .no_hove_line a:hover {
+            text-decoration: none;
+            color: #343a40;
+        }
+        #Bottom {
+            border-top: 1px solid rgba(0, 0, 0, 0.22);
+            background-color: #fff;
+            text-align: center;
+            color: #999;
+            padding: 0px 10px 0px 10px;
+        }
+
+        #q {
+            border: none;
+            width: 222px;
+            height: 26px;
+            margin: 0px 0px 2px 30px;
+            background-color: transparent;
+            font-size: 14px;
+            line-height: 16px;
+            outline: none;
+        }
+        .header {
+            padding: 10px;
+            font-size: 15px;
+            line-height: 120%;
+            text-align: left;
+            border-bottom: 1px solid #e2e2e2;
+            overflow: auto;
+        }
+        .f12 {
+            font-size: 12px;
+        }
+        .fr {
+            float: right;
+            text-align: right;
+        }
+        .hide {
+            display: none;
+        }
+        .page_input {
+            padding: 4px 4px 4px 4px;
+            font-size: 14px;
+            line-height: 14px;
+            border: 1px solid #e2e2e2;
+            border-radius: 3px;
+            width: 40px;
+            background-color: #fff;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+            color: #ccc;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .page-link {
+            color: #778087;
+        }
+        .page-link:hover {
+            color: #778087;
+        }
+        .page-item.active .page-link {
+            background-color: #aab0c6;
+            border-color: #aab0c6;
+        }
+        .topic-info a,strong{
+            margin-right: 3px;
+            margin-left: 3px;
+        }
+        .topic-title {
+            margin-bottom: 10px;
+        }
+
+        .topic {
+            margin: 0 auto;
+            padding: 0;
+        }
+        .avatar {
+            width: 73px;
+            height: 73px;
+        }
+    </style>
+    {% block CSS %} {% endblock %}
+</head>
+<body>
+<div id="Top">
+    <div class="content">
+        <div style="padding-top: 6px;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tbody>
+                <tr>
+                    <td style="padding-right: 10px" width="110" align="left"><a href="{% url 'new_index' %}" name="top" title="way to explore"><img
+                            src="/static/img/logo.png" border="0" align="default" alt="信息管理系统分析与设计"
+                            width="160" height="30"></a></td>
+                    <td width="auto" align="left">
+                        <div id="Search">
+                            <form action="https://www.baidu.com/s" onsubmit="return dispatch()" target="_blank">
+                                <div style="width: 276px; height: 28px; background-size: 276px 28px; background-image: url('/static/img/qbar_light@2x.png'); background-repeat: no-repeat; display: inline-block;">
+                                    <input type="text" maxlength="40" name="wd" id="q" value=""/>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                    {% if request.session.user_info %}
+                        <td width="570" align="right" style="padding-top: 2px;">
+                            <a href="{% url 'new_index' %}" class="top">首页</a>
+                            &nbsp;&nbsp;&nbsp;<a href="{% url 'member' request.session.user_info.username %}" class="top">{{ request.session.user_info.username }}</a>
+                            &nbsp;&nbsp;&nbsp;<a href="/settings" class="top">设置</a>
+                            &nbsp;&nbsp;&nbsp;<a href="#;" onclick="if (confirm('确定要从 信息管理系统分析与设计 课程网站登出？')) { location.href= '{% url 'signout' %}'; }" class="top">登出</a></td>
+                    {% else %}
+                        <td width="570" align="right" style="padding-top: 2px;"><a href="{% url 'new_index' %}" class="top">首页</a>&nbsp;&nbsp;&nbsp;<a
+                            href="{% url 'signup' %}" class="top">注册</a>&nbsp;&nbsp;&nbsp;<a href="{% url 'signin' %}" class="top">登录</a></td>
+                    {% endif %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="Wrapper">
+    <div class="content">
+        <div id="Leftbar"></div>
+        <div id="Rightbar">
+            <div class="sep20"></div>
+            {% block rightbar %} {% endblock %}
+        </div>
+        <div id="Main">
+            <div class="sep20"></div>
+            {% block main %}
+            {% endblock %}
+        </div>
+        <div class="sep20"></div>
+    </div>
+    <div class="c"></div>
+    {% if is_login %}
+        {% csrf_token %}
+    {% endif %}
+<div id="Bottom">
+    <div class="content">
+        <div class="inner">
+            <div class="sep10"></div>
+            <strong>
+                <!--<a href="/about" class="dark" target="_self">关于</a> &nbsp; <span class="snow">·</span> &nbsp;
+
+                <a href="/faq" class="dark" target="_self">FAQ</a> &nbsp; <span class="snow">·</span> &nbsp;
+                <a href="/p/7v9TEc53" class="dark" target="_self">API</a> &nbsp; <span class="snow">·</span> &nbsp;
+                <a href="/mission" class="dark" target="_self">我们的愿景</a> &nbsp; <span class="snow">·</span> &nbsp;
+                <a href="/advertise" class="dark" target="_self">广告投放</a> &nbsp; <span class="snow">·</span> &nbsp;
+                <a href="/advertise/2016.html" class="dark" target="_self">鸣谢</a>  <span class="snow">·</span>
+                {{ request.online_member_count }} 人在线&nbsp;
+                <span class="snow">·</span> --></strong>&nbsp;
+                <span>您的IP是: {{ request.session.ip }}</span>
+            <div class="sep20"></div>
+            学生和老师的社区
+            <div class="sep5"></div>
+
+            <div class="sep20"></div>
+            <div class="sep10"></div>
+        </div>
+    </div>
+    {% block footer %} {% endblock %}
+</div>
+</div>
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery-3.3.1.js"></script>
+<script src="/static/js/jquery.cookie.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/plugin/highlight/highlight.pack.js"></script>
+
+<script>
+    /* Ajax 初始化请求操作*/
+    $(function () {
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader('X-CSRFtoken', $.cookie('csrftoken'));
+            }
+        });
+    });
+    /* title 变化 */
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            $('title').text('信息管理系统分析与设计');
+        } else {
+            $('title').text('欢迎回来ヽ(✿ﾟ▽ﾟ)ノ');
+            setTimeout("$('title').text('信息管理系统分析与设计');", 3000);
+        }
+    }, false);
+
+</script>
+<script>hljs.initHighlightingOnLoad();</script>
+{% block JS %} {% endblock %}
+</body>
+</html>

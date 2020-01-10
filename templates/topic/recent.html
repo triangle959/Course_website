@@ -1,0 +1,71 @@
+{% extends 'topic/master.html' %}
+{% block CSS %}
+<style>
+    .topic-avatar {
+        margin-right: 26px;
+    }
+    .topic-title {
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+{% block main %}
+<div class="box">
+    <div class="header">
+        <div class="fr f12"><span>共 {{ page_obj.data_count }} 个主题</span></div>
+        <a href="{% url 'index' %}">论坛首页</a>
+        <span class="chevron">&nbsp;›&nbsp;</span> 最近的主题
+    </div>
+
+    <div class="cell" style="background-color: #f9f9f9; padding: 10px 10px 10px 20px;">
+        <ul class="pagination pagination-sm" style="margin-bottom:0;">
+            {{ page_str }}
+        </ul>
+    </div>
+    {% for obj in topic_obj %}
+        <div class="cell item">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tbody>
+                <tr>
+                    <td width="48" valign="top" align="center">
+                        <a href="{% url 'member' obj.author.username %}">
+                            <img src="{{ obj.author.avatar }}" class="rounded" alt="{{ obj.author.username }}"
+                                 width="48px" height="48px" border="0" align="default">
+                        </a>
+                    </td>
+                    <td width="10"></td>
+                    <td width="auto" valign="middle">
+                            <span class="item_title"><a
+                                    href="{% url 'topic' obj.topic_sn %}">{{ obj.title|safe }}</a></span>
+                        <div class="sep5"></div>
+                        <span class="small">
+                            <div class="votes"></div>
+                            <a class="node"
+                               href="{% url 'node' obj.category.code %}">{{ obj.category.name }}</a> &nbsp;•&nbsp;
+                            <strong>
+                                <a href="{% url 'member' obj.author.username %}">{{ obj.author.username }}</a>
+                            </strong>
+                            {% if obj.last_comment_user %}
+                                &nbsp;•&nbsp; {{ obj.last_comment_time }} &nbsp;•&nbsp; 最后回复来自
+                                <strong>
+                                    <a href="{% url 'member' obj.last_comment_user %}">{{ obj.last_comment_user }}</a>
+                                </strong>
+                            {% endif %}
+                        </span>
+                    </td>
+                    <td width="70" align="right" valign="middle">
+                        <a href="{% url 'topic' obj.topic_sn %}"
+                           class="badge badge-pill badge-secondary">&nbsp;{{ obj.comment_num }}&nbsp;</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+    <div class="cell" style="background-color: #f9f9f9; padding: 10px 10px 10px 20px;">
+        <ul class="pagination pagination-sm" style="margin-bottom:0;">
+            {{ page_str }}
+        </ul>
+    </div>
+</div>
+{% endblock %}

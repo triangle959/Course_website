@@ -1,0 +1,63 @@
+{% extends 'course/master.html' %}
+{% block content %}
+    <div class="box">
+        <div class="inner" style="background-color: #fff; border-top-left-radius: 3px; border-top-right-radius: 3px;" id="Tabs">
+            <div class="cell" style="background-color: #f9f9f9; padding: 10px 10px 10px 20px;">
+                <a href="{% url 'new_index' %}" class="badge badge-dark">课程介绍</a>
+                &nbsp;
+                <a href="shizi" class="badge badge-dark">师资队伍</a>
+                &nbsp;
+                <a href="content" class="badge badge-dark">理论教学大纲</a>
+                &nbsp;
+                <a href="dagang" class="badge badge-dark">实验教学大纲</a>
+                &nbsp;
+                <a href="shiyan" class="badge badge-dark">实验项目</a>
+                &nbsp;
+                <a href="kejian" class="badge badge-dark">课件下载</a>
+                &nbsp;
+                <a href="xiti" class="badge badge-dark">课程习题</a>
+                &nbsp;
+                {% if request.session.user_info %}
+                    {% if request.session.user_info.is_superuser %}
+                        <a href="/admin" class="badge badge-dark">课程实训</a>
+                    {% else %}
+                        <a href="{% url 'xuanti' %}" class="badge badge-dark">课程实训</a>
+                    {% endif %}
+                    &nbsp;
+                    <a href="{% url 'index' %}" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="/examlist" class="badge badge-dark">自我测试</a>
+                {% else %}
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程实训</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">自我测试</a>
+                {% endif %}
+            </div>
+            <div class="cell">
+                <div class="topic_content" >
+                    <h2 align="center"><br>《信息管理系统分析与设计》实验教学大纲</h2>
+                    <h4 align="center"><br>（供信息管理与信息系统专业使用）</h4>
+                    <h5 > <br>一、实践（实验）教学的指导思想和教学目的</h5>
+                    <span class="gray" style="font-family: Arial;font-size: 16px;line-height: 25px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;《信息管理系统分析与设计》主要讲解面向对象的信息系统分析与设计方法，以UML建模语言为例，对信息系统的分析与设计进行各项任务的建模。通过本课程实验，使学生在实际的案例中完成系统分析与系统设计中的主要步骤，并了解信息系统开发的建模语言，加深对信息系统分析与设计课程基础理论、基本知识的理解，提高分析和解决问题的能力，使学生在实践中熟悉信息系统分析与设计的规范和提高团队协作能力，为后继的毕业设计和软件开发的实际工作打下良好的基础。
+                    </span>
+                    <h6 > <br>二、实践（实验）教学的基本要求</h6>
+                    <span class="gray" style="font-family: Arial;font-size: 16px;line-height: 25px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.基本要求：教师根据信息系统开发过程中的需求分析、系统分析和系统设计中的建模要求，制定用例图、活动图、类图、顺序图等各项知识点的实验案例分析题。在实验过程中回答学生问题，引导学生如何进行系统分析与设计。
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.课程采用个人完成方式，1人1组，在实验过程中按照实验步骤积极动手进行实验操作，深入思考、分析、讨论，按各个实验的具体要求完成和提交实验成果（实验报告和UML建模电子文档），增强解决实际问题的能力。
+                    </span>
+                    <h6 > <br>三、使用教材</h6>
+                    <span class="gray" style="font-family: Arial;font-size: 16px;line-height: 25px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自编实验指导书
+                    </span>
+                    <h6 > <br>四、考核方式</h6>
+                    <span class="gray" style="font-family: Arial;font-size: 16px;line-height: 25px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每次实验完成后，要求学生上交UML建模电子文档和实验报告，实验成绩通过平时成绩、实验成果两个方面综合评定，实验成绩为百分制。平时成绩方面，定期在课堂上抽查学生完成实验任务的情况，包括UML建模工具运用的熟练程度、分析与设计建模步骤的规范性等方面。在实验成果方面，检查实验报告是否完成了实验课程要求的所有分析与设计任务，每项分析与设计任务的正确性，实验结果分析讨论是否符合逻辑，报告格式是否规范等方面。
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

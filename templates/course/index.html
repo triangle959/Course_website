@@ -1,0 +1,52 @@
+{% extends 'course/master.html' %}
+{% block content %}
+    <div class="box">
+        <div class="inner" style="background-color: #fff; border-top-left-radius: 3px; border-top-right-radius: 3px;" id="Tabs">
+            <div class="cell" style="background-color: #f9f9f9; padding: 10px 10px 10px 20px;">
+                <a href="{% url 'new_index' %}" class="badge badge-dark">课程介绍</a>
+                &nbsp;
+                <a href="shizi" class="badge badge-dark">师资队伍</a>
+                &nbsp;
+                <a href="content" class="badge badge-dark">理论教学大纲</a>
+                &nbsp;
+                <a href="dagang" class="badge badge-dark">实验教学大纲</a>
+                &nbsp;
+                <a href="shiyan" class="badge badge-dark">实验项目</a>
+                &nbsp;
+                <a href="kejian" class="badge badge-dark">课件下载</a>
+                &nbsp;
+                <a href="xiti" class="badge badge-dark">课程习题</a>
+                &nbsp;
+                {% if request.session.user_info %}
+                    {% if request.session.user_info.is_superuser %}
+                        <a href="/admin" class="badge badge-dark">课程实训</a>
+                    {% else %}
+                        <a href="xuanti" class="badge badge-dark">课程实训</a>
+                    {% endif %}
+                    &nbsp;
+                    <a href="{% url 'index' %}" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="/examlist" class="badge badge-dark">自我测试</a>
+                {% else %}
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程实训</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">自我测试</a>
+                {% endif %}
+            </div>
+            <div class="cell">
+                <div class="topic_content" >
+                    <h2 align="center">课程介绍</h2>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;《信息管理系统分析与设计》是信息管理与信息系统专业必修的专业基础课。本课程围绕着信息系统开发的整个过程，以面向对象方法为主，讲授信息系统分析与设计的过程，主要内容包括面向对象软件开发方法、需求分析、系统分析、系统设计、统一建模语言等；本课程将信息系统分析与设计的过程与统一建模语言相结合，在每个阶段进行系统建模，从而实现信息系统的分析与设计工作。
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过本课程的学习，使学生掌握系统分析和设计技术的基础知识和实践技能，熟悉分析与设计建模环境和工具。本课程要求如下：
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.本课程分为掌握、熟悉和了解三种层次要求。
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.通过本课程的学习，使学生全面而系统地掌握信息系统的基本理论、概念、原理、结构和功能。掌握信息系统规划、分析和设计的各项开发阶段的工作原则、步骤和方法，熟练面向对象方法的基本概念及技术，了解其它程序设计方法。掌握面向对象开发方法，以用例为驱动，掌握用例图、活动图、交互图、状态机图等建模步骤和方法。了解软件再工程和软件复用的基本概念和功能。本课程是以培养学生对信息系统的分析与设计能力以及提高学生的实际动手能力为宗旨的一门重要课程，具有很强的理论性、综合性、实践性。在教学过程中，应通过案例分析来讲解理论知识点，强调理论联系实际。
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.考试：闭卷。
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.本课程选用教材：UML系统建模及系统分析与设计 王欣、张毅编著 中国水利水电出版社 ，2013年9月.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

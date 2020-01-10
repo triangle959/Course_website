@@ -1,0 +1,79 @@
+{% extends 'exam/master.html' %}
+{% block main %}
+    <div class="box">
+        <div class="header"><a href="{% url 'new_index' %}">信息管理系统分析与设计</a> <span class="chevron">&nbsp;›&nbsp;</span> 选题</div>
+        <div class="inner">
+            <h1 >欢迎进入实训选题!</h1>
+            <div class="cell">
+                {% if is_over %}
+                    <span style="font-family: '微软雅黑 Light';font-size: 19px;line-height: 25px;">
+                        现在未到实训选题时间！！！
+                            <br></span>
+                {% else %}
+                    {% if Shixun_obj.subject %}
+                        <span style="font-family: '微软雅黑 Light';font-size: 19px;line-height: 25px;">
+                        您已经进行选题!
+                            <br></span>
+                        <form action="" method="post">{% csrf_token %}
+                            在{{ Shixun_obj.end_time }}前还可以更改：<input type="text" name="subject">
+                            <input type="submit" value="修改" >
+                        </form>
+                    {% else %}
+                        <span style="font-family: '微软雅黑 Light';font-size: 19px;line-height: 25px;">
+                        您还未进行选题!
+                        <br></span>
+                        <form action="" method="post">{% csrf_token %}
+                            请输入你的题目：<input type="text" name="subject">
+                            <input type="submit" value="提交" >
+                        </form>
+                    {% endif %}
+                {% endif %}
+            </div>
+
+            <div class="cell">
+                <span style="color: red; font-size: 16px">请各位同学仔细查看实训选题要求，自行组队协商</span>
+                <a href="/static/file/《信息系统分析与设计实训》教学大纲-谢晓玲改.doc"
+                   style="font-size: 16px; text-decoration: underline">选题须知</a>
+            </div>
+            <div class="cell">
+                <span style="font-family: '微软雅黑 Light';font-size: 16px; line-height: 30px">已经进行选题的同学：</span>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr class="row mx-0">
+                            <td class="col-2" align="center">学号</td>
+                            <td class="col-2" align="center"> 姓名</td>
+                            <td class="col-6" align="center">选题</td>
+                            <td class="col-2" align="center">命题通过</td>
+                        </tr>
+                        {% for obj in Shixun_class_obj %}
+                            {% if obj.subject %}
+                                <tr class="row mx-0">
+                                    <td class="col-2" align="center">{{ obj.stu_id }}</td>
+                                    <td class="col-2" align="center">{{ obj.stu_name }}</td>
+                                    <td class="col-6" align="center">{{ obj.subject }}</td>
+                                    <td class="col-2" align="center">
+                                        {% if obj.is_pass == -1 %}
+                                            还未被查看
+                                        {% elif obj.is_pass == 0 %}
+                                            不通过
+                                        {% else %}
+                                            通过
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% if Shixun_obj.suggestion %}
+                <div class="cell">
+                    <h3>老师的建议</h3>
+                    <span class="gray" style="font-family: '微软雅黑 Light';font-size: 18px;line-height: 25px;">
+                        &emsp;&emsp;&emsp;&emsp;{{ Shixun_obj.suggestion }}
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

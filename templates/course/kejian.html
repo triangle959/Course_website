@@ -1,0 +1,68 @@
+{% extends 'course/master.html' %}
+{% block content %}
+    <div class="box">
+        <div class="inner" style="background-color: #fff; border-top-left-radius: 3px; border-top-right-radius: 3px;" id="Tabs">
+            <div class="cell" style="background-color: #f9f9f9; padding: 10px 10px 10px 20px;">
+                <a href="{% url 'new_index' %}" class="badge badge-dark">课程介绍</a>
+                &nbsp;
+                <a href="shizi" class="badge badge-dark">师资队伍</a>
+                &nbsp;
+                <a href="content" class="badge badge-dark">理论教学大纲</a>
+                &nbsp;
+                <a href="dagang" class="badge badge-dark">实验教学大纲</a>
+                &nbsp;
+                <a href="shiyan" class="badge badge-dark">实验项目</a>
+                &nbsp;
+                <a href="kejian" class="badge badge-dark">课件下载</a>
+                &nbsp;
+                <a href="xiti" class="badge badge-dark">课程习题</a>
+                &nbsp;
+                {% if request.session.user_info %}
+                    {% if request.session.user_info.is_superuser %}
+                        <a href="/admin" class="badge badge-dark">课程实训</a>
+                    {% else %}
+                        <a href="{% url 'xuanti' %}" class="badge badge-dark">课程实训</a>
+                    {% endif %}
+                    &nbsp;
+                    <a href="{% url 'index' %}" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="/examlist" class="badge badge-dark">自我测试</a>
+                {% else %}
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程实训</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">课程论坛</a>
+                    &nbsp;
+                    <a href="#;" onclick="if (confirm('您还未登陆，请先登陆 信息管理系统分析与设计 网站！')) { location.href= '{% url 'signin' %}'; }" class="badge badge-dark">自我测试</a>
+                {% endif %}
+            </div>
+            <div class="cell">
+                <div class="topic_content" >
+                    <h2 align="center">课件下载</h2>
+                    <a href="/static/file/ppt/第1次课件.pptx">第一次课课件</a>
+                    <br><br>
+                    <a href="/static/file/ppt/第2次课件.pptx">第二次课课件</a>
+                    <br><br>
+                    <a href="/static/file/ppt/第3次课ppt.pptx">第三次课课件</a>
+                    <br><br>
+                    <a href="/static/file/ppt/第4次课ppt.pptx">第四次课课件</a>
+                    <br><br>
+                    <a href="/static/file/ppt/第5次课ppt.pptx">第五次课课件</a>
+                    <br><br>
+                    <a href="/static/file/ppt/第6次课ppt.pptx">第六次课课件</a>
+                    <br><br>
+                    <a href="/static/file/ppt/第7次课ppt.pptx">第七次课课件</a>
+                    <br><br>
+                    <a href="/static/file/ppt/第8次课ppt.pptx">第八次课课件</a>
+                    <br><br>
+                    <a href="/static/file/ppt/第9次课ppt.pptx">第九次课课件</a>
+                    <br><br>
+                    <a href="/static/file/ppt/第10次课ppt.pptx">第十次课课件</a>
+                    <br><br>
+                    <a href="/static/file/ppt/第11次课ppt.pptx">第十一次课课件</a>
+                    <br><br>
+                    <a href="/static/file/ppt/第12次课ppt.pptx">第十二次课课件</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
